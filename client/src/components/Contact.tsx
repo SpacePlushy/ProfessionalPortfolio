@@ -32,10 +32,10 @@ const Contact = () => {
           <span className="absolute bottom-0 left-0 w-2/3 h-1 bg-teal"></span>
         </motion.h2>
         
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-2xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
@@ -99,47 +99,6 @@ const Contact = () => {
                   {getSocialIcon(link.icon)}
                 </a>
               ))}
-            </div>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="bg-navy bg-opacity-30 p-8 rounded-lg shadow-md"
-          >
-            <h3 className="text-xl font-bold font-poppins text-white mb-6">Connect With Me</h3>
-            <p className="text-slate mb-6">
-              I'm always interested in hearing about new opportunities, interesting projects, 
-              or just connecting with fellow professionals in the software industry.
-            </p>
-            <div className="flex flex-col space-y-4">
-              <a 
-                href={`mailto:${contactInfo.email}`}
-                className="flex items-center px-6 py-3 bg-teal bg-opacity-10 hover:bg-opacity-20 rounded transition-all duration-300"
-              >
-                <Mail className="text-teal mr-3" size={20} />
-                <span className="text-white">Send me an email</span>
-              </a>
-              <a 
-                href="https://www.linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center px-6 py-3 bg-teal bg-opacity-10 hover:bg-opacity-20 rounded transition-all duration-300"
-              >
-                <FaLinkedinIn className="text-teal mr-3" size={20} />
-                <span className="text-white">Connect on LinkedIn</span>
-              </a>
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center px-6 py-3 bg-teal bg-opacity-10 hover:bg-opacity-20 rounded transition-all duration-300"
-              >
-                <FaGithub className="text-teal mr-3" size={20} />
-                <span className="text-white">Follow on GitHub</span>
-              </a>
             </div>
           </motion.div>
         </div>
