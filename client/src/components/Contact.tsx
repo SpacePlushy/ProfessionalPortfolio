@@ -1,44 +1,9 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { contactInfo } from "../data/resumeData";
 import { FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target;
-    setFormData((prev) => ({ ...prev, [id]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
-      });
-    }, 1000);
-  };
 
   const getSocialIcon = (icon: string) => {
     switch (icon) {
@@ -142,65 +107,40 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
+            className="bg-navy bg-opacity-30 p-8 rounded-lg shadow-md"
           >
-            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md text-darkGrey">
-              <div className="mb-6">
-                <label htmlFor="name" className="block text-darkGrey font-medium mb-2">Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
-                />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="email" className="block text-darkGrey font-medium mb-2">Email</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
-                />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="subject" className="block text-darkGrey font-medium mb-2">Subject</label>
-                <input 
-                  type="text" 
-                  id="subject" 
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
-                />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-darkGrey font-medium mb-2">Message</label>
-                <textarea 
-                  id="message" 
-                  rows={5} 
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
-                ></textarea>
-              </div>
-              
-              <button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="w-full py-3 bg-navy text-white font-medium rounded hover:bg-opacity-90 transition-all duration-300 flex justify-center items-center disabled:opacity-70"
+            <h3 className="text-xl font-bold font-poppins text-white mb-6">Connect With Me</h3>
+            <p className="text-slate mb-6">
+              I'm always interested in hearing about new opportunities, interesting projects, 
+              or just connecting with fellow professionals in the software industry.
+            </p>
+            <div className="flex flex-col space-y-4">
+              <a 
+                href={`mailto:${contactInfo.email}`}
+                className="flex items-center px-6 py-3 bg-teal bg-opacity-10 hover:bg-opacity-20 rounded transition-all duration-300"
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                {!isSubmitting && <Mail className="ml-2" size={16} />}
-              </button>
-            </form>
+                <Mail className="text-teal mr-3" size={20} />
+                <span className="text-white">Send me an email</span>
+              </a>
+              <a 
+                href="https://www.linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center px-6 py-3 bg-teal bg-opacity-10 hover:bg-opacity-20 rounded transition-all duration-300"
+              >
+                <FaLinkedinIn className="text-teal mr-3" size={20} />
+                <span className="text-white">Connect on LinkedIn</span>
+              </a>
+              <a 
+                href="https://github.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center px-6 py-3 bg-teal bg-opacity-10 hover:bg-opacity-20 rounded transition-all duration-300"
+              >
+                <FaGithub className="text-teal mr-3" size={20} />
+                <span className="text-white">Follow on GitHub</span>
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>
