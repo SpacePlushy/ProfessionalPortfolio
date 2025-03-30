@@ -42,8 +42,8 @@ const Header = ({ activeSection }: HeaderProps) => {
   return (
     <header className={`fixed top-0 w-full bg-white z-50 transition-all duration-300 ${scrolled ? 'shadow-md py-2' : 'py-4'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <a href="#" className="text-navy font-poppins text-2xl font-bold">
-          <span className="text-teal">F</span>rank Palmisano
+        <a href="#" className="text-navy font-poppins text-2xl font-bold mr-10">
+          <span className="text-purple">F</span>rank Palmisano
         </a>
         
         <button 
@@ -54,12 +54,12 @@ const Header = ({ activeSection }: HeaderProps) => {
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
         
-        <nav className="hidden md:flex space-x-8">
+        <nav className="hidden md:flex space-x-12">
           {navLinks.map((link) => (
             <a 
               key={link.href}
               href={link.href}
-              className={`nav-link font-poppins transition-colors duration-300 ${activeSection === link.href.substring(1) ? 'text-teal' : 'text-navy hover:text-teal'}`}
+              className={`nav-link font-poppins transition-colors duration-300 ${activeSection === link.href.substring(1) ? 'text-purple' : 'text-navy hover:text-purple'}`}
             >
               {link.text}
             </a>
@@ -82,7 +82,7 @@ const Header = ({ activeSection }: HeaderProps) => {
             <a 
               key={link.href}
               href={link.href}
-              className={`font-poppins transition-colors duration-300 ${activeSection === link.href.substring(1) ? 'text-teal' : 'text-navy hover:text-teal'}`}
+              className={`font-poppins transition-colors duration-300 ${activeSection === link.href.substring(1) ? 'text-purple' : 'text-navy hover:text-purple'}`}
               onClick={closeMobileMenu}
             >
               {link.text}
