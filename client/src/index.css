@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --navy: 215 77% 12%;
+    --teal: 160 100% 70%;
+    --white: 0 0% 100%;
+    --dark-grey: 0 0% 20%;
+    --slate: 217 17% 62%;
+
+    --background: 0 0% 100%;
+    --foreground: 0 0% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+ 
+    --primary: var(--navy);
+    --primary-foreground: 0 0% 100%;
+ 
+    --secondary: var(--teal);
+    --secondary-foreground: var(--navy);
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: var(--slate);
+    --accent-foreground: var(--navy);
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: var(--teal);
+ 
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .section {
+    @apply py-20 md:py-24 min-h-screen flex items-center;
+  }
+
+  .nav-link {
+    @apply relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute w-0 h-0.5 bg-teal bottom-[-4px] left-0 transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .progress-bar {
+    @apply h-1.5 bg-gray-200 rounded overflow-hidden;
+  }
+
+  .progress {
+    @apply h-full rounded bg-teal transition-all duration-1000;
+  }
+
+  .section-heading {
+    @apply text-3xl font-bold font-poppins mb-12 text-navy relative inline-block;
+  }
+
+  .section-heading::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-2/3 h-1 bg-teal;
+  }
+
+  .timeline-item {
+    @apply relative pl-8;
+  }
+
+  .timeline-item::before {
+    content: '';
+    @apply absolute left-0 top-6 bottom-[-24px] w-0.5 bg-gray-200;
+  }
+
+  .timeline-item:last-child::before {
+    @apply hidden;
+  }
+
+  .timeline-dot {
+    @apply absolute left-[-5px] top-2.5 w-2.5 h-2.5 rounded-full bg-teal z-10;
+  }
+
+  .card {
+    @apply transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply transform -translate-y-1 shadow-md;
+  }
+}
+
+@layer utilities {
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .text-navy {
+    color: hsl(var(--navy));
+  }
+
+  .text-teal {
+    color: hsl(var(--teal));
+  }
+
+  .text-slate {
+    color: hsl(var(--slate));
+  }
+
+  .bg-navy {
+    background-color: hsl(var(--navy));
+  }
+
+  .bg-teal {
+    background-color: hsl(var(--teal));
+  }
+
+  .bg-slate {
+    background-color: hsl(var(--slate));
+  }
+
+  .border-teal {
+    border-color: hsl(var(--teal));
+  }
+
+  .hover\:text-teal:hover {
+    color: hsl(var(--teal));
+  }
+
+  .hover\:bg-teal:hover {
+    background-color: hsl(var(--teal));
+  }
+}
