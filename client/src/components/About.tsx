@@ -76,7 +76,7 @@ const About = () => {
                 {personalTraits.map((trait, index) => (
                   <motion.span 
                     key={index} 
-                    className="px-4 py-2 bg-purple bg-opacity-10 text-purple font-medium rounded-full shadow-sm"
+                    className="px-4 py-2 bg-purple text-white font-medium rounded-full shadow-sm"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
