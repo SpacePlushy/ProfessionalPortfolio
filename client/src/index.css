@@ -126,14 +126,17 @@
 
   .text-navy {
     color: hsl(var(--navy));
+    @apply dark:text-white;
   }
 
   .text-teal {
     color: hsl(var(--teal));
+    @apply dark:text-teal;
   }
 
   .text-slate {
     color: hsl(var(--slate));
+    @apply dark:text-slate;
   }
 
   .bg-navy {
