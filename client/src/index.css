@@ -131,7 +131,7 @@
 
   .text-teal {
     color: hsl(var(--teal));
-    @apply dark:text-teal;
+    @apply dark:text-secondary;
   }
 
   .text-slate {
