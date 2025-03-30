@@ -42,27 +42,41 @@ const Header = ({ activeSection }: HeaderProps) => {
   return (
     <header className={`fixed top-0 w-full bg-white z-50 transition-all duration-300 ${scrolled ? 'shadow-md py-2' : 'py-4'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <a href="#" className="text-navy font-poppins text-2xl font-bold mr-10">
-          <span className="text-purple">F</span>rank Palmisano
-        </a>
+        <motion.a 
+          href="#" 
+          className="text-navy font-poppins text-2xl font-bold mr-10 flex items-center"
+          whileHover={{ scale: 1.03 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        >
+          <motion.span 
+            className="text-purple"
+            whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+            transition={{ duration: 0.5 }}
+          >F</motion.span>
+          rank Palmisano
+        </motion.a>
         
-        <button 
+        <motion.button 
           className="md:hidden text-navy focus:outline-none" 
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        </motion.button>
         
         <nav className="hidden md:flex space-x-12">
           {navLinks.map((link) => (
-            <a 
+            <motion.a 
               key={link.href}
               href={link.href}
-              className={`nav-link font-poppins transition-colors duration-300 ${activeSection === link.href.substring(1) ? 'text-purple' : 'text-navy hover:text-purple'}`}
+              className={`nav-link font-poppins ${activeSection === link.href.substring(1) ? 'text-purple' : 'text-navy hover:text-purple'}`}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               {link.text}
-            </a>
+            </motion.a>
           ))}
         </nav>
       </div>
@@ -79,14 +93,16 @@ const Header = ({ activeSection }: HeaderProps) => {
       >
         <div className="container mx-auto px-6 py-4 flex flex-col space-y-4">
           {navLinks.map((link) => (
-            <a 
+            <motion.a 
               key={link.href}
               href={link.href}
-              className={`font-poppins transition-colors duration-300 ${activeSection === link.href.substring(1) ? 'text-purple' : 'text-navy hover:text-purple'}`}
+              className={`font-poppins ${activeSection === link.href.substring(1) ? 'text-purple' : 'text-navy hover:text-purple'}`}
               onClick={closeMobileMenu}
+              whileHover={{ x: 5 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               {link.text}
-            </a>
+            </motion.a>
           ))}
         </div>
       </motion.div>
