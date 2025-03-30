@@ -35,7 +35,6 @@ const Header = ({ activeSection }: HeaderProps) => {
     { href: "#about", text: "About" },
     { href: "#experience", text: "Experience" },
     { href: "#skills", text: "Skills" },
-    { href: "#education", text: "Education" },
     { href: "#projects", text: "Projects" },
     { href: "#contact", text: "Contact" }
   ];

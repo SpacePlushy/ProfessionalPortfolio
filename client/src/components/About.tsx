@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { aboutMe, personalTraits } from "../data/resumeData";
+import { aboutMe, personalTraits, education } from "../data/resumeData";
 
 const About = () => {
   return (
@@ -15,22 +15,47 @@ const About = () => {
           About Me
         </motion.h2>
         
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            className="card bg-white p-6 rounded-lg shadow-sm hover:shadow-md"
           >
-            <div className="bg-navy p-1 inline-block rounded-lg rotate-3 transition-transform hover:rotate-0 duration-300">
-              <div className="bg-teal p-1 rounded-lg -rotate-3 transition-transform hover:rotate-0 duration-300">
-                <img 
-                  src="https://images.unsplash.com/photo-1629904853893-c2c8981a3073?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                  alt="Profile" 
-                  className="rounded h-auto w-full max-w-md mx-auto"
-                />
+            <div className="flex flex-wrap justify-between items-start gap-4 mb-4">
+              <div>
+                <h3 className="text-xl font-bold font-poppins text-navy">{education.school}</h3>
+                <h4 className="text-md font-medium text-slate">{education.department}</h4>
+              </div>
+              <div className="text-slate text-sm">
+                <p>{education.graduationDate}</p>
+                <p>{education.location}</p>
               </div>
             </div>
+            
+            <div className="mb-4">
+              <span className="inline-block bg-purple bg-opacity-20 text-navy font-medium px-3 py-1 text-sm rounded-full">
+                {education.degree}
+              </span>
+              <span className="inline-block ml-2 text-slate text-sm">Major GPA: {education.gpa}</span>
+            </div>
+            
+            <ul className="space-y-2 text-darkGrey">
+              {education.achievements.map((achievement, index) => (
+                <motion.li 
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}
+                  className="flex items-start"
+                >
+                  <span className="text-purple mr-2">▹</span>
+                  <span>{achievement}</span>
+                </motion.li>
+              ))}
+            </ul>
           </motion.div>
           
           <motion.div 
