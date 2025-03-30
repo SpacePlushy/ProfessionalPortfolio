@@ -136,7 +136,6 @@
 
   .text-slate {
     color: hsl(var(--slate));
-    @apply dark:text-slate;
   }
 
   .bg-navy {
