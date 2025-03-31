@@ -29,7 +29,7 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-2xl md:text-4xl font-semibold font-poppins text-slate mb-6"
           >
-            Software Engineer
+            Embedded Software Engineer
           </motion.h2>
           
           <motion.p 
@@ -38,10 +38,11 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-slate mb-8 text-lg leading-relaxed"
           >
-            Versatile Software Engineer with expertise in aerospace and space applications. 
-            Exceptional problem-solving skills, adaptability to new technologies, and a proven 
-            track record in managing software obsolescence and delivering high-quality code 
-            for mission-critical systems.
+            Innovative Embedded Software Engineer with 6+ years spearheading virtualization 
+            and automated testing solutions for NASA and ISS projects, consistently delivering 
+            multimillion-dollar savings. Specialized in designing robust, reliable software 
+            for mission-critical aerospace applications with a proven record of optimizing 
+            performance, efficiency, and system reliability.
           </motion.p>
           
           <motion.div 

@@ -38,24 +38,28 @@ const About = () => {
               <span className="inline-block bg-purple bg-opacity-20 text-navy font-medium px-3 py-1 text-sm rounded-full">
                 {education.degree}
               </span>
-              <span className="inline-block ml-2 text-slate text-sm">Major GPA: {education.gpa}</span>
+              {education.gpa && (
+                <span className="inline-block ml-2 text-slate text-sm">Major GPA: {education.gpa}</span>
+              )}
             </div>
             
-            <ul className="space-y-2 text-darkGrey">
-              {education.achievements.map((achievement, index) => (
-                <motion.li 
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}
-                  className="flex items-start"
-                >
-                  <span className="text-purple mr-2">▹</span>
-                  <span>{achievement}</span>
-                </motion.li>
-              ))}
-            </ul>
+            {education.achievements && education.achievements.length > 0 && (
+              <ul className="space-y-2 text-darkGrey">
+                {education.achievements.map((achievement, index) => (
+                  <motion.li 
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}
+                    className="flex items-start"
+                  >
+                    <span className="text-purple mr-2">▹</span>
+                    <span>{achievement}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            )}
           </motion.div>
           
           <motion.div 
