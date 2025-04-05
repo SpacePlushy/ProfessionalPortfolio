@@ -74,12 +74,11 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
-              <div className="absolute inset-0 bg-purple rounded-full opacity-20 blur-md transform translate-x-2 translate-y-2"></div>
+            <div className="w-64 h-64 md:w-80 md:h-80">
               <img 
                 src={headshotImage} 
                 alt="Frank Palmisano Headshot" 
-                className="rounded-full w-full h-full object-cover border-4 border-purple shadow-lg"
+                className="rounded-full w-full h-full object-cover border-2 border-purple shadow-md"
               />
             </div>
           </motion.div>
