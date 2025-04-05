@@ -44,16 +44,18 @@ const Header = ({ activeSection }: HeaderProps) => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         <motion.a 
           href="#" 
-          className="text-navy font-poppins text-2xl font-bold mr-10 flex items-center"
+          className="text-navy font-poppins text-2xl font-bold mr-10"
           whileHover={{ scale: 1.03 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
-          <motion.span 
-            className="text-purple"
-            whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-            transition={{ duration: 0.5 }}
-          >F</motion.span>
-          rank Palmisano
+          <span className="logo-text">
+            <motion.span 
+              className="text-purple"
+              whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+              transition={{ duration: 0.5 }}
+            >F</motion.span>rank
+          </span>
+          <span className="block">Palmisano</span>
         </motion.a>
         
         <motion.button 

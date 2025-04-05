@@ -137,6 +137,12 @@ html {
   font-family: 'Inter', sans-serif;
 }
 
+.logo-text {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
 .text-navy {
   color: hsl(215, 77%, 12%);
 }
