@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color: #111827;">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,9 +8,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Frank Palmisano | Software Engineer</title>
     <meta name="description" content="Portfolio of Frank Palmisano, Software Engineer with expertise in aerospace and space applications">
+    <style>
+      /* Prevent header flash by hiding it initially */
+      header {
+        visibility: hidden;
+        background-color: #111827 !important;
+      }
+      /* Show header once page is fully loaded */
+      .js-loaded header {
+        visibility: visible;
+        background-color: white !important;
+        transition: background-color 0.3s ease;
+      }
+    </style>
+    <script>
+      // Mark document as loaded to trigger CSS transitions
+      window.addEventListener('load', function() {
+        document.documentElement.classList.add('js-loaded');
+      });
+    </script>
   </head>
-  <body>
-    <div id="root"></div>
+  <body style="background-color: #111827; margin: 0;">
+    <div id="root" style="background-color: #111827;"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

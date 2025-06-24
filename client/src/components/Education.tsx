@@ -1,11 +1,17 @@
 import { motion } from "framer-motion";
-import { education } from "../data/resumeData";
+import { usePortfolioView } from "../hooks/usePortfolioView";
 
 const Education = () => {
+  const { education } = usePortfolioView();
+
+  if (!education || education.length === 0) {
+    return null;
+  }
+
   return (
     <section id="education" className="section bg-gray-50">
       <div className="container mx-auto px-6">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -14,48 +20,27 @@ const Education = () => {
         >
           Education
         </motion.h2>
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="card bg-white p-8 rounded-lg shadow-sm hover:shadow-md"
-        >
-          <div className="flex flex-wrap justify-between items-start gap-6 mb-6">
-            <div>
-              <h3 className="text-xl font-bold font-poppins text-navy">{education.school}</h3>
-              <h4 className="text-lg font-medium text-slate">{education.department}</h4>
-            </div>
-            <div className="text-slate">
-              <p>{education.graduationDate}</p>
-              <p>{education.location}</p>
-            </div>
-          </div>
-          
-          <div className="mb-6">
-            <span className="inline-block bg-teal bg-opacity-20 text-navy font-medium px-4 py-1 rounded-full">
-              {education.degree}
-            </span>
-            <span className="inline-block ml-3 text-slate">Major GPA: {education.gpa}</span>
-          </div>
-          
-          <ul className="space-y-3 text-darkGrey">
-            {education.achievements.map((achievement, index) => (
-              <motion.li 
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.1 + 0.3 }}
-                className="flex items-start"
-              >
-                <span className="text-teal mr-2">▹</span>
-                <span>{achievement}</span>
-              </motion.li>
-            ))}
-          </ul>
-        </motion.div>
+
+        <div className="space-y-6">
+          {education.map((edu, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="card bg-white p-6 rounded-lg shadow-sm hover:shadow-md"
+            >
+              <div className="flex flex-wrap justify-between items-center gap-4">
+                <div>
+                  <h3 className="text-lg font-bold font-poppins text-navy">{edu.degree}</h3>
+                  <p className="text-slate">{edu.university}</p>
+                </div>
+                <p className="text-slate font-medium bg-gray-100 px-3 py-1 rounded-full text-sm">{edu.year}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

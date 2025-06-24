@@ -23,47 +23,41 @@ export function log(message: string, source = "express") {
 }
 
 export async function setupVite(app: Express, server: Server) {
-  const serverOptions = {
-    middlewareMode: true,
-    hmr: { server },
-    allowedHosts: true,
-  };
-
+  // Create a basic Vite dev server
   const vite = await createViteServer({
-    ...viteConfig,
-    configFile: false,
-    customLogger: {
-      ...viteLogger,
-      error: (msg, options) => {
-        viteLogger.error(msg, options);
-        process.exit(1);
-      },
+    root: path.resolve(__dirname, "../client"),
+    server: {
+      middlewareMode: true,
+      hmr: { server },
     },
-    server: serverOptions,
-    appType: "custom",
+    appType: "spa", // Changed to SPA mode which is more appropriate for this app
   });
 
+  console.log("Vite middleware configured with root:", path.resolve(__dirname, "../client"));
+  
+  // Use Vite's middleware
   app.use(vite.middlewares);
+  
+  // Fallback handler for SPA routing
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
+    console.log(`[SPA-FALLBACK] Handling: ${url}`);
 
     try {
-      const clientTemplate = path.resolve(
-        __dirname,
-        "..",
-        "client",
-        "index.html",
-      );
-
-      // always reload the index.html file from disk incase it changes
-      let template = await fs.promises.readFile(clientTemplate, "utf-8");
-      template = template.replace(
-        `src="/src/main.tsx"`,
-        `src="/src/main.tsx?v=${nanoid()}"`,
-      );
-      const page = await vite.transformIndexHtml(url, template);
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
+      // Get the absolute path to index.html
+      const indexPath = path.resolve(__dirname, "../client/index.html");
+      console.log(`Reading index.html from: ${indexPath}`);
+      
+      // Read the index.html file
+      let html = await fs.promises.readFile(indexPath, "utf-8");
+      
+      // Apply Vite HTML transforms
+      html = await vite.transformIndexHtml(url, html);
+      
+      // Send the transformed HTML
+      res.status(200).set({ "Content-Type": "text/html" }).end(html);
     } catch (e) {
+      console.error("Error serving index.html:", e);
       vite.ssrFixStacktrace(e as Error);
       next(e);
     }

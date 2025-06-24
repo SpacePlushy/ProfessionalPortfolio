@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
-import { contactInfo } from "../data/resumeData";
+import { usePortfolioView } from "../hooks/usePortfolioView";
 import { FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const Contact = () => {
+  const { email, phone, location, contactMessage, socialLinks } = usePortfolioView();
 
   const getSocialIcon = (icon: string) => {
     switch (icon) {
@@ -21,7 +22,7 @@ const Contact = () => {
   return (
     <section id="contact" className="section bg-navy text-white">
       <div className="container mx-auto px-6">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -31,7 +32,7 @@ const Contact = () => {
           Contact Me
           <span className="absolute bottom-0 left-0 w-2/3 h-1 bg-teal"></span>
         </motion.h2>
-        
+
         <div className="max-w-2xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -40,10 +41,9 @@ const Contact = () => {
             transition={{ duration: 0.5 }}
           >
             <p className="text-slate text-lg mb-8 leading-relaxed">
-              I'm currently looking for new opportunities to apply my expertise in software engineering. 
-              Whether you have a question or just want to say hi, I'll do my best to get back to you!
+              {contactMessage}
             </p>
-            
+
             <div className="space-y-6">
               <div className="flex items-center">
                 <div className="w-12 h-12 rounded-full bg-teal bg-opacity-20 flex items-center justify-center mr-4">
@@ -51,50 +51,50 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-slate text-sm">Email</p>
-                  <a 
-                    href={`mailto:${contactInfo.email}`} 
+                  <a
+                    href={`mailto:${email}`}
                     className="text-white hover:text-teal transition-colors duration-300"
                   >
-                    {contactInfo.email}
+                    {email}
                   </a>
                 </div>
               </div>
-              
+
               <div className="flex items-center">
                 <div className="w-12 h-12 rounded-full bg-teal bg-opacity-20 flex items-center justify-center mr-4">
                   <Phone className="text-teal" size={20} />
                 </div>
                 <div>
                   <p className="text-slate text-sm">Phone</p>
-                  <a 
-                    href={`tel:${contactInfo.phone.replace(/[^0-9]/g, '')}`} 
+                  <a
+                    href={`tel:${phone.replace(/[^0-9]/g, '')}`}
                     className="text-white hover:text-teal transition-colors duration-300"
                   >
-                    {contactInfo.phone}
+                    {phone}
                   </a>
                 </div>
               </div>
-              
+
               <div className="flex items-center">
                 <div className="w-12 h-12 rounded-full bg-teal bg-opacity-20 flex items-center justify-center mr-4">
                   <MapPin className="text-teal" size={20} />
                 </div>
                 <div>
                   <p className="text-slate text-sm">Location</p>
-                  <p className="text-white">{contactInfo.location}</p>
+                  <p className="text-white">{location}</p>
                 </div>
               </div>
             </div>
-            
+
             <div className="mt-8 flex space-x-4">
-              {contactInfo.socialLinks.map((link, index) => (
-                <a 
+              {socialLinks.map((link, index) => (
+                <a
                   key={index}
-                  href={link.url} 
+                  href={link.url}
                   className="w-10 h-10 rounded-full bg-slate bg-opacity-20 flex items-center justify-center hover:bg-teal hover:bg-opacity-20 transition-colors duration-300"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={link.platform}
+                  aria-label={link.name}
                 >
                   {getSocialIcon(link.icon)}
                 </a>

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { experiences } from "../data/resumeData";
+import { usePortfolioView } from "../hooks/usePortfolioView";
 
 const Experience = () => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
+  const { experience: experiences } = usePortfolioView();
 
   const handleInView = (index: number) => {
     if (!visibleItems.includes(index)) {
@@ -14,7 +15,7 @@ const Experience = () => {
   return (
     <section id="experience" className="section bg-gray-50">
       <div className="container mx-auto px-6">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -23,11 +24,11 @@ const Experience = () => {
         >
           Work Experience
         </motion.h2>
-        
+
         <div className="timeline space-y-12">
           {experiences.map((experience, index) => (
-            <motion.div 
-              key={index} 
+            <motion.div
+              key={index}
               className="timeline-item"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -43,14 +44,14 @@ const Experience = () => {
                     <h4 className="text-lg font-medium text-slate">{experience.company}</h4>
                   </div>
                   <div className="text-slate">
-                    <p>{experience.period}</p>
+                    <p>{experience.dates}</p>
                     <p>{experience.location}</p>
                   </div>
                 </div>
                 <p className="text-slate mb-4">{experience.description}</p>
                 <ul className="space-y-3 text-darkGrey">
                   {experience.responsibilities.map((responsibility, respIndex) => (
-                    <motion.li 
+                    <motion.li
                       key={respIndex}
                       initial={{ opacity: 0, x: -20 }}
                       animate={visibleItems.includes(index) ? { opacity: 1, x: 0 } : {}}

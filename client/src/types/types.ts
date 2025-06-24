@@ -1,48 +1,48 @@
 export interface Experience {
-  title: string;
   company: string;
+  title: string;
+  dates: string;
   location: string;
-  period: string;
   description: string;
   responsibilities: string[];
+}
+
+export interface Education {
+  degree: string;
+  university: string;
+  year: string;
+}
+
+export interface SkillCategory {
+  category: string;
+  items: string[];
 }
 
 export interface Project {
   title: string;
   description: string;
-  technologies: string[];
   imageUrl: string;
-}
-
-export interface Education {
-  school: string;
-  department: string;
-  degree: string;
-  gpa: string;
-  location: string;
-  graduationDate: string;
-  achievements: string[];
-}
-
-export interface Skill {
-  name: string;
-  percentage: number;
-}
-
-export interface SkillCategory {
-  title: string;
-  items: string[];
+  technologies: string[];
 }
 
 export interface SocialLink {
-  platform: string;
+  name: string;
   url: string;
   icon: string;
 }
 
-export interface ContactInfo {
+export interface ResumeData {
+  name: string;
+  title: string;
   email: string;
   phone: string;
   location: string;
+  contactMessage: string;
+  professionalSummary: string[];
+  personalTraits: string[];
+  experience: Experience[];
+  education: Education[];
+  skills: SkillCategory[];
+  projects: Project[];
   socialLinks: SocialLink[];
 }

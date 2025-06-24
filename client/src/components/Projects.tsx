@@ -1,11 +1,17 @@
 import { motion } from "framer-motion";
-import { projects } from "../data/resumeData";
+import { usePortfolioView } from "../hooks/usePortfolioView";
 
 const Projects = () => {
+  const { projects } = usePortfolioView();
+
+  if (!projects || projects.length === 0) {
+    return null; // Don't render the section if there are no projects
+  }
+
   return (
     <section id="projects" className="section bg-white">
       <div className="container mx-auto px-6">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -14,10 +20,10 @@ const Projects = () => {
         >
           Personal Projects
         </motion.h2>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -26,9 +32,9 @@ const Projects = () => {
               className="card bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-md"
             >
               <div className="h-48 bg-gray-200 relative overflow-hidden">
-                <img 
-                  src={project.imageUrl} 
-                  alt={project.title} 
+                <img
+                  src={project.imageUrl}
+                  alt={project.title}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-navy bg-opacity-60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
