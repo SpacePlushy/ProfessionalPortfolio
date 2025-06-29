@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import DarkModeToggle from "./DarkModeToggle";
 
 interface HeaderProps {
   activeSection: string;
@@ -9,12 +10,8 @@ interface HeaderProps {
 const Header = ({ activeSection }: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Mark component as mounted after first render
-    setMounted(true);
-    
     const handleScroll = () => {
       const isScrolled = window.scrollY > 50;
       if (isScrolled !== scrolled) {
@@ -44,17 +41,17 @@ const Header = ({ activeSection }: HeaderProps) => {
   ];
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'shadow-md py-2' : 'py-4'} ${mounted ? 'bg-white' : 'bg-gray-900'}`}>
+    <header className={`fixed top-0 w-full bg-white dark:bg-background z-50 transition-all duration-300 ${scrolled ? 'shadow-md py-2' : 'py-4'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
         <motion.a 
           href="#" 
-          className={`font-poppins text-2xl font-bold mr-10 ${mounted ? 'text-navy' : 'text-transparent'}`}
+          className="text-navy dark:text-foreground font-poppins text-2xl font-bold mr-10 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md"
           whileHover={{ scale: 1.03 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
           <span className="logo-text">
             <motion.span 
-              className={mounted ? 'text-purple' : 'text-transparent'}
+              className="text-purple"
               whileHover={{ rotate: [0, -10, 10, -10, 0] }}
               transition={{ duration: 0.5 }}
             >F</motion.span>rank
@@ -63,33 +60,30 @@ const Header = ({ activeSection }: HeaderProps) => {
         </motion.a>
         
         <motion.button 
-          className={`md:hidden focus:outline-none ${mounted ? 'text-navy' : 'text-transparent'}`}
+          className="md:hidden text-navy dark:text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md p-2"
           onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </motion.button>
         
-        <nav className={`hidden md:flex space-x-12 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+        <nav className="hidden md:flex space-x-12 items-center">
           {navLinks.map((link) => (
             <motion.a 
               key={link.href}
               href={link.href}
-              className={`nav-link font-poppins ${
-                mounted 
-                  ? activeSection === link.href.substring(1) 
-                    ? 'text-purple' 
-                    : 'text-navy hover:text-purple'
-                  : 'text-transparent'
-              }`}
+              className={`nav-link font-poppins focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 ${activeSection === link.href.substring(1) ? 'text-purple' : 'text-navy dark:text-foreground hover:text-purple'}`}
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               {link.text}
             </motion.a>
           ))}
+          <div className="ml-6">
+            <DarkModeToggle />
+          </div>
         </nav>
       </div>
       
@@ -101,20 +95,14 @@ const Header = ({ activeSection }: HeaderProps) => {
           opacity: mobileMenuOpen ? 1 : 0
         }}
         transition={{ duration: 0.3 }}
-        className={`md:hidden border-t overflow-hidden ${mounted ? 'bg-white' : 'bg-gray-900'}`}
+        className="md:hidden bg-white dark:bg-background border-t dark:border-border overflow-hidden"
       >
         <div className="container mx-auto px-6 py-4 flex flex-col space-y-4">
           {navLinks.map((link) => (
             <motion.a 
               key={link.href}
               href={link.href}
-              className={`font-poppins ${
-                !mounted 
-                  ? 'text-transparent' 
-                  : activeSection === link.href.substring(1) 
-                    ? 'text-purple' 
-                    : 'text-navy hover:text-purple'
-              }`}
+              className={`font-poppins focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1 ${activeSection === link.href.substring(1) ? 'text-purple' : 'text-navy dark:text-foreground hover:text-purple'}`}
               onClick={closeMobileMenu}
               whileHover={{ x: 5 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -122,6 +110,9 @@ const Header = ({ activeSection }: HeaderProps) => {
               {link.text}
             </motion.a>
           ))}
+          <div className="mt-4">
+            <DarkModeToggle />
+          </div>
         </div>
       </motion.div>
     </header>
